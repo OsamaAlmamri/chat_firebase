@@ -4,12 +4,13 @@ import 'package:chat_firebase/constants.dart';
 import 'package:chat_firebase/widgets/custom_text_field.dart';
 import 'package:chat_firebase/widgets/custom_button.dart';
 import 'package:chat_firebase/pages/resgister_page.dart';
-
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
   static String id = 'login page';
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -20,10 +21,11 @@ class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> formKey = GlobalKey();
 
   String? email, password;
+
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
+    return ModalProgressHUD(
+      child: Scaffold(
         backgroundColor: kPrimaryColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -154,13 +156,13 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-      )
-    ;
-
+      ),
+      inAsyncCall: isLoading,
+    );
   }
+
   Future<void> loginUser() async {
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
   }
-
 }
