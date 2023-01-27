@@ -1,3 +1,4 @@
+import 'package:chat_firebase/pages/chat_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -113,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       try {
                         await registerUser();
 
-                       // Navigator.pushNamed(context, ChatPage.id);
+                       Navigator.pushNamed(context, ChatPage.id);
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'weak-password') {
                           ScaffoldMessenger.of(context).showSnackBar(

@@ -1,3 +1,4 @@
+import 'package:chat_firebase/pages/chat_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_firebase/constants.dart';
@@ -96,8 +97,8 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {});
                       try {
                         await loginUser();
-                        // Navigator.pushNamed(context, ChatPage.id,
-                        //     arguments: email);
+                        Navigator.pushNamed(context, ChatPage.id,
+                            arguments: email);
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'user-not-found') {
                           ScaffoldMessenger.of(context).showSnackBar(
