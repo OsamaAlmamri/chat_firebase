@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:chat_firebase/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 class ChatPage extends StatelessWidget {
   static String id = 'ChatPage';
+  CollectionReference messages =
+  FirebaseFirestore.instance.collection(kMessagesCollections);
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +24,7 @@ class ChatPage extends StatelessWidget {
            height: 50,
          ),
          Text('chat'),
+
        ],
      ),
      centerTitle: true,
@@ -65,7 +72,11 @@ class ChatPage extends StatelessWidget {
              ),
            ),
          ),
-       )
+       ),
+       ElevatedButton(onPressed: (){
+
+         messages.add({"message":"osama"});
+       }, child: Text("test send "))
      ],
    ),
  );
